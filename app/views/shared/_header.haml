@@ -12,7 +12,7 @@
         = link_to 'Cookies', cookies_path
       %li
         / tak powinno to być oznaczone
-        / - wykonuje rubie i nie zwraca do widoku
+        / - wykonuje ruby i nie zwraca do widoku
         - if current_user
           = link_to 'Logout', destroy_user_session_path, method: :delete
         - else
