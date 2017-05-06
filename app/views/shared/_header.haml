@@ -10,10 +10,7 @@
         = link_to 'About', about_path
       %li
         = link_to 'Cookies', cookies_path
+      = show_categories_list_for_admin.html_safe
       %li
-        / tak powinno to być oznaczone
-        / - wykonuje ruby i nie zwraca do widoku
-        - if current_user
-          = link_to 'Logout', destroy_user_session_path, method: :delete
-        - else
-          = link_to 'Login', new_user_session_path
+        = login_or_logout_user_link
+
