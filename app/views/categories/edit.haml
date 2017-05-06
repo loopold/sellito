@@ -1,6 +1,6 @@
 %h2 
 	Edit category page
 	= @category.name
-	= link_to "Delete", @category, method: :delete, data: { confirm: "Na pewno?" }
+	= link_to "Delete", @category, method: :delete, data: { confirm: "Are you sure?" }
 
 = render 'form'
