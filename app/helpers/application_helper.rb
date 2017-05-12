@@ -19,9 +19,4 @@ module ApplicationHelper
     categories_link_tag = "<li>#{link_to 'Categories', categories_path}</li>"
     categories_link_tag.html_safe if current_user_is_admin
   end
-
-  def new_category_for_admin
-    new_category_link = "<li>#{link_to 'New category', new_category_path}</li>"
-    new_category_link.html_safe if current_user_is_admin
-  end
 end
