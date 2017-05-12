@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   root 'homepage#index'
 
+  resources :posts
+  # resources :users do
+  #   resources :posts
+  # end
+
   resources :categories
 
   get '/about', to: 'homepage#about'

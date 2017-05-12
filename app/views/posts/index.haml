@@ -1,0 +1,4 @@
+/ = @categories.inspect
+- @posts.each do |post|
+  %p= link_to post.title, post
+= button_to 'add post', new_post_path, method: :get, class: 'btn'
