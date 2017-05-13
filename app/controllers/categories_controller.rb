@@ -19,20 +19,10 @@ class CategoriesController < ApplicationController
   	# raise params.to_yaml
   	# Category.create(category_params)
   	@category = Category.new(category_params)
-  	if @category.valid? 
-      @category.save
-	  	flash[:notice] = 'Category created'
-	  	# redirect_back(fallback_location: root_path)
-	  	# przekierowanie gdzies
-	  	redirect_to @category
-	  else
-	  	flash[:errors] = @category.errors.full_messages
-	  	redirect_back(fallback_location: root_path)
-		end
+  	@category.valid? ? create_category : handle_category_validation_failed
   end
 
   # metody ktore nic nie robia w jednej linijce
-  # def show; end
   def show; end
 
   def edit; end
@@ -49,6 +39,21 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def params_have_valid_user_id
+    category_params[:user_id] == current_user.id.to_s
+  end
+
+  def create_category
+    @category.save
+    flash[:notice] = 'Category created'
+    redirect_to @category
+  end
+
+  def handle_category_validation_failed
+      flash[:errors] = @category.errors.full_messages
+      redirect_back(fallback_location: root_path)
+  end
 
   def fetch_category
   	@category = Category.find(params[:id])
