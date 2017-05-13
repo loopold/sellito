@@ -3,5 +3,5 @@
 %p
   Expiration date:
   = @post.expiration_date.to_date
-= link_to "Edit", edit_post_path(@post)
+= link_to "Edit", edit_post_path if post_owner(@post)
 %p= @post.description

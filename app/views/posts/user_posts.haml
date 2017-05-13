@@ -1,7 +1,7 @@
 / = @categories.inspect
-%h2 Posts
+%h2 My posts
 - @posts.each do |post|
   %p
     = link_to post.title, post
-    = link_to 'edit', edit_post_path(post) if post_owner(post)
+    = link_to 'edit', edit_post_path(post)
 = button_to 'add post', new_post_path, method: :get, class: 'btn'
