@@ -16,17 +16,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    # jesli user nie jest rowny zalogowanemu to wychodze
-    return unless post_params[:user_id] == current_user.id.to_s
+    return unless params_have_valid_user_id
     @post = Post.new(post_params)
-    if @post.valid?
-      @post.save
-      flash[:notice] = 'Post created'
-      redirect_to @post
-    else
-      flash[:errors] = @post.errors.full_messages
-      redirect_back(fallback_location: root_path)
-    end
+    @post.valid? ? create_post : handle_post_validation_failed
   end
 
   def show
@@ -47,6 +39,21 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def params_have_valid_user_id
+    post_params[:user_id] == current_user.id.to_s
+  end
+
+  def create_post
+    @post.save
+    flash[:notice] = 'Post created'
+    redirect_to @post
+  end
+
+  def handle_post_validation_failed
+      flash[:errors] = @post.errors.full_messages
+      redirect_back(fallback_location: root_path)
+  end
 
   def fetch_post
     @post = Post.find(params[:id])
