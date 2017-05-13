@@ -19,11 +19,12 @@ class PostsController < ApplicationController
     # jesli user nie jest rowny zalogowanemu to wychodze
     return unless post_params[:user_id] == current_user.id.to_s
     @post = Post.new(post_params)
-    if @post.save
+    if @post.valid?
+      @post.save
       flash[:notice] = 'Post created'
       redirect_to @post
     else
-      flash[:alert] = 'Post not created'
+      flash[:errors] = @post.errors.full_messages
       redirect_back(fallback_location: root_path)
     end
   end

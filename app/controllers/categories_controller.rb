@@ -19,13 +19,14 @@ class CategoriesController < ApplicationController
   	# raise params.to_yaml
   	# Category.create(category_params)
   	@category = Category.new(category_params)
-  	if @category.save
+  	if @category.valid? 
+      @category.save
 	  	flash[:notice] = 'Category created'
 	  	# redirect_back(fallback_location: root_path)
 	  	# przekierowanie gdzies
 	  	redirect_to @category
 	  else
-	  	flash[:alert] = 'Category not created'
+	  	flash[:errors] = @category.errors.full_messages
 	  	redirect_back(fallback_location: root_path)
 		end
   end
