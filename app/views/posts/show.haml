@@ -1,3 +1,7 @@
 %h2
   = @post.title
-  = link_to "Edit", edit_post_path(@post)
+%p
+  Expiration date:
+  = @post.expiration_date.to_date
+= link_to "Edit", edit_post_path(@post)
+%p= @post.description
