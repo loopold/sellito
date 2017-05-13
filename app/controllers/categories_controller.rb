@@ -3,23 +3,23 @@ class CategoriesController < ApplicationController
   before_action :fetch_category, only: %i(show edit update destroy)
 
   def index
-  	# binding.pry
-  	@categories = Category.all
+    # binding.pry
+    @categories = Category.all
   end
 
   def new
-  	@category = Category.new
+    @category = Category.new
   end
  
   def create
-  	# narzedzie do debugowania
-  	# binding.pry
-  	# potem w konsoli mozesz np. params 
-  	#  
-  	# raise params.to_yaml
-  	# Category.create(category_params)
-  	@category = Category.new(category_params)
-  	@category.valid? ? create_category : handle_category_validation_failed
+    # narzedzie do debugowania
+    # binding.pry
+    # potem w konsoli mozesz np. params 
+    #  
+    # raise params.to_yaml
+    # Category.create(category_params)
+    @category = Category.new(category_params)
+    @category.valid? ? create_category : handle_category_validation_failed
   end
 
   # metody ktore nic nie robia w jednej linijce
@@ -56,12 +56,12 @@ class CategoriesController < ApplicationController
   end
 
   def fetch_category
-  	@category = Category.find(params[:id])
+    @category = Category.find(params[:id])
   end
 
   def category_params
-  	# tylko zapisze name
-  	params.require(:category).permit(:name)
+    # tylko zapisze name
+    params.require(:category).permit(:name)
   end
 
 end
