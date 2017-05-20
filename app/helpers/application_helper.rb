@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def current_user_is_admin
+    current_user&.is_admin?
+  end
+
   def login_or_logout_user_link
     current_user ? logout_user_link : login_user_link
   end
