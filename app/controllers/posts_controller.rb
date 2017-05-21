@@ -25,14 +25,18 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def edit; end
+  def edit 
+    authorize @post
+  end
 
   def update
+    authorize @post
     @post.update_attributes(post_params)
     redirect_to @post
   end
 
   def destroy
+    authorize @post
     @post.destroy!
     flash[:notice] = "Post #{@post.title} deleted"
     redirect_to posts_path
