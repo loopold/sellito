@@ -1,5 +1,8 @@
 class Post < ApplicationRecord
   # TODO: handle uploading photos
+  scope :featured_posts, lambda {
+    includes(:categories).order('created_at DESC').limit(5)
+  }
   belongs_to :user
   has_many :post_categories
   has_many :categories, through: :post_categories
