@@ -4,4 +4,4 @@
   %p
     = link_to post.title, post
     = link_to 'edit', edit_post_path(post) if post_owner(post)
-= button_to 'add post', new_post_path, method: :get, class: 'btn'
+= button_to 'add post', new_post_path, method: :get, class: 'btn' if current_user

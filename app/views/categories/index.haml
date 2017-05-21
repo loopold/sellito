@@ -2,4 +2,4 @@
 %h2 Categories
 - @categories.each do |category|
   %p= link_to category.name.capitalize, category
-= button_to 'add category', new_category_path, method: :get, class: 'btn'
+= button_to 'add category', new_category_path, method: :get, class: 'btn' if current_user_is_admin
